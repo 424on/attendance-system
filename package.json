@@ -2,6 +2,9 @@
   "name": "attendance-system",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "nodemon ./bin/www",
     "start": "node ./bin/www",
