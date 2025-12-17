@@ -1,10 +1,18 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-
 require("dotenv").config();
+const { Sequelize, DataTypes } = require("sequelize");
+
+const host = process.env.MYSQLHOST || process.env.DB_HOST;
+const port = Number(process.env.MYSQLPORT || process.env.DB_PORT || 3306);
+const user = process.env.MYSQLUSER || process.env.DB_USER;
+const pass = process.env.MYSQLPASSWORD || process.env.DB_PASS;
+const name = process.env.MYSQLDATABASE || process.env.DB_NAME;
+
+const sequelize = new Sequelize(name, user, pass, {
+    host,
+    port,
+    dialect: "mysql",
+    logging: false,
+});
 
 var session = require("express-session");
 var SequelizeStore = require("connect-session-sequelize")(session.Store);
