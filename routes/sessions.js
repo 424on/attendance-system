@@ -125,7 +125,7 @@ router.post(
                 startAt,
                 endAt,
                 room,
-                attendanceMethod = "ELECTRONIC",
+                attendanceMethod,
             } = req.body;
 
             if (!week) return res.status(400).json({ message: "week 필수" });
