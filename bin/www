@@ -81,3 +81,17 @@ function onListening() {
   console.log("✅ Listening on " + bind);
   debug("Listening on " + bind);
 }
+
+process.on("SIGTERM", () => {
+  console.log("SIGTERM received. Shutting down gracefully...");
+  server.close(() => {
+    console.log("HTTP server closed.");
+    process.exit(0);
+  });
+  setTimeout(() => process.exit(0), 5000).unref();
+});
+
+process.on("SIGINT", () => {
+  console.log("SIGINT received. Shutting down gracefully...");
+  server.close(() => process.exit(0));
+});
