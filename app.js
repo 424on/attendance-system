@@ -37,6 +37,7 @@ const freeTimePollsRouter = require("./routes/freeTimePolls");
 const reportsRouter = require("./routes/reports");
 const reportsRiskRouter = require("./routes/reportsRisk");
 const reportsExtraRouter = require("./routes/reportsExtra");
+var notificationsRouter = require("./routes/notifications");
 
 var app = express();
 
@@ -124,6 +125,7 @@ app.use("/", freeTimePollsRouter);
 app.use("/", reportsRouter);
 app.use("/", reportsRiskRouter);
 app.use("/", reportsExtraRouter);
+app.use("/me", notificationsRouter);
 
 app.use("/debug", debugRouter);
 

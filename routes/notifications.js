@@ -5,7 +5,7 @@ const { Notification } = require("../src/models");
 const router = express.Router();
 
 // GET /me/notifications?unreadOnly=true&limit=20&offset=0
-router.get("/me/notifications", requireLogin, async (req, res) => {
+router.get("/notifications", requireLogin, async (req, res) => {
     try {
         const user = req.session.user;
 
@@ -34,7 +34,7 @@ router.get("/me/notifications", requireLogin, async (req, res) => {
 });
 
 // PATCH /me/notifications/:id/read  (단건 읽음 처리)
-router.patch("/me/notifications/:id/read", requireLogin, async (req, res) => {
+router.patch("/notifications/:id/read", requireLogin, async (req, res) => {
     try {
         const user = req.session.user;
         const id = Number(req.params.id);
@@ -58,7 +58,7 @@ router.patch("/me/notifications/:id/read", requireLogin, async (req, res) => {
 
 // PATCH /me/notifications/read  (벌크 읽음 처리)
 // body: { ids: [1,2,3] } 또는 { all: true }
-router.patch("/me/notifications/read", requireLogin, async (req, res) => {
+router.patch("/notifications/read", requireLogin, async (req, res) => {
     try {
         const user = req.session.user;
         const { ids, all } = req.body || {};
